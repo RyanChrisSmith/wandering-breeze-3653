@@ -27,6 +27,7 @@ RSpec.describe 'Projects show page' do
       expect(page).to have_content("News Chic")
       expect(page).to have_content("Material: #{@news_chic.material}")
       expect(page).to have_content("Challenge Theme: Recycled Material")
+      expect(page).to_not have_content("Boardfit")
     end
   end
 end
