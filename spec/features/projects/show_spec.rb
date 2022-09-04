@@ -47,12 +47,24 @@ RSpec.describe 'Projects show page' do
       expect(page).to have_content("Average Contestant Experience: 11.5")
     end
 
+    it 'has a form to add a contestant to the project' do
+      visit "/projects/#{@upholstery_tux.id}"
+
+      expect(page).to have_field("Add a Contestant to #{@upholstery_tux.name}")
+    end
+
+    it 'when hit add contestant to project, will take you back ot the show page' do
+      visit "/projects/#{@upholstery_tux.id}"
+      fill_in "Add a Contestant to Upholstery Tuxedo", with: "#{@jay.id}"
+
+      expect(current_path).to eq("/projects/#{@upholstery_tux.id}")
+      expect(page).to have_content("Number of Contestants: 3")
+    end
+
+    xit 'will show the number increased for number of contestants and average experience will change' do
+
+    end
+
   end
 end
 
-
-
-
-# (e.g.    Litfit
-#     Material: Lamp Shade
-#   Challenge Theme: Apartment Furnishings)
