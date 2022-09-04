@@ -20,6 +20,7 @@ RSpec.describe 'Projects show page' do
       ContestantProject.create(contestant_id: @kentaro.id, project_id: @boardfit.id)
       ContestantProject.create(contestant_id: @erin.id, project_id: @boardfit.id)
     end
+
     it 'I see that projects name and material as well as the theme of the challenge' do 
       visit "/projects/#{@news_chic.id}"
 
@@ -29,6 +30,14 @@ RSpec.describe 'Projects show page' do
       expect(page).to have_content("Challenge Theme: Recycled Material")
       expect(page).to_not have_content("Boardfit")
     end
+
+    it 'will show a count of the total contestants on each project' do
+      visit "/projects/#{@news_chic.id}"
+
+      expect(page).to have_content("Number of Contestants: #{@news_chic.contestants.count}")
+      expect(page).to_not have_content("Number of Contestants: #{@lit_fit.contestants.count}")
+    end
+
   end
 end
 
