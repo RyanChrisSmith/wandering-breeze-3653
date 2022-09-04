@@ -1,0 +1,7 @@
+<h1>Contestants Index</h1>
+
+<% @contestants.each do |contestant|%>
+<p><strong><%= contestant.name %></strong></p>
+
+<p>Projects: <%= contestant.projects.map(&:name).to_sentence %>
+<%end%>

@@ -31,6 +31,12 @@ RSpec.describe 'Contestants Index page' do
       expect(page).to_not have_content('This should not be here')
     end
 
-    it 'lists all the projects each contestant is involved in'
+    it 'lists all the projects each contestant is involved in' do
+      visit "/contestants"
+
+      expect(page).to have_content('News Chic')
+      expect(page).to have_content('Upholstery Tuxedo')
+      expect(page).to have_content('Boardfit')
+    end
   end
 end
