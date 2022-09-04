@@ -2,6 +2,5 @@
 
 <% @contestants.each do |contestant|%>
 <p><strong><%= contestant.name %></strong></p>
-
 <p>Projects: <%= contestant.projects.map(&:name).to_sentence %>
 <%end%>

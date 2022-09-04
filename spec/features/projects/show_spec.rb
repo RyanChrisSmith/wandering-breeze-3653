@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Projects show page' do
-  describe 'As a visitor, When I visit a projects show page ("/projects/:id"),' do 
+  describe 'As a visitor, When I visit a projects show page ("/projects/:id"),' do
     before :each do
       @recycled_material_challenge = Challenge.create(theme: "Recycled Material", project_budget: 1000)
       @furniture_challenge = Challenge.create(theme: "Apartment Furnishings", project_budget: 1000)
@@ -21,7 +21,7 @@ RSpec.describe 'Projects show page' do
       ContestantProject.create(contestant_id: @erin.id, project_id: @boardfit.id)
     end
 
-    it 'I see that projects name and material as well as the theme of the challenge' do 
+    it 'I see that projects name and material as well as the theme of the challenge' do
       visit "/projects/#{@news_chic.id}"
 
       expect(current_path).to eq("/projects/#{@news_chic.id}")
@@ -36,6 +36,15 @@ RSpec.describe 'Projects show page' do
 
       expect(page).to have_content("Number of Contestants: #{@news_chic.contestants.count}")
       expect(page).to_not have_content("Number of Contestants: #{@lit_fit.contestants.count}")
+    end
+
+    it 'will show the average years of experience of the contestants in each project' do
+      visit "/projects/#{@news_chic.id}"
+
+      expect(page).to have_content("Average Contestant Experience: 12.5")
+
+      visit "/projects/#{@boardfit.id}"
+      expect(page).to have_content("Average Contestant Experience: 11.5")
     end
 
   end
